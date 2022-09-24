@@ -1,0 +1,29 @@
+@import "../../vars.scss";
+
+.button {
+  border-radius: 5px;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  border: 0;
+  &--default {
+    background-color: $default;
+    color: $textColor;
+    &:active {
+      background-color: $defaultClicked;
+    }
+  }
+  &--danger {
+    background-color: $danger;
+    color: $secondaryColor;
+    &:active {
+      background-color: $dangerClicked;
+    }
+  }
+  &--primary {
+    background-color: $thirdColor;
+    color: $textColor;
+    &:active {
+      background-color:  rgba($color: $thirdColor, $alpha: 0.7);
+    }
+  }
+}

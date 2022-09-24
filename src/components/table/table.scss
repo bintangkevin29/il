@@ -1,0 +1,35 @@
+@import "../../vars.scss";
+
+.table {
+  background-color: $secondaryColor;
+  padding: 2em 1em;
+  border-radius: 10px;
+  border: 1px solid $thirdColor;
+
+  &__add-button{
+    margin-bottom: 1em;
+  }
+
+  &__table {
+    table-layout: fixed;
+    border-collapse: collapse;
+    margin-bottom: 1em;
+    td {
+      padding: 1em 1.4em;
+      border: 1px solid $borderColor;
+    }
+    thead {
+      background-color: $thirdColor;
+      font-weight: bold;
+      font-size: 0.9em;
+    }
+    tbody {
+      font-size: 0.7em;
+    }
+  }
+
+  &__pagination{
+    display: flex;
+    justify-content: center;
+  }
+}

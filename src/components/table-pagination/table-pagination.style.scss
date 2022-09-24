@@ -1,0 +1,22 @@
+@import "../../vars.scss";
+
+.pagination {
+  display: flex;
+  justify-content: center;
+
+  &__item {
+    padding: 0.7em;
+    margin: 0 0.2em;
+    border-radius: 3px;
+    border: $border;
+    background-color: $thirdColor;
+    cursor: pointer;
+    &:hover {
+      background-color: rgba($color: $thirdColor, $alpha: 0.7);
+    }
+
+    &--active {
+      background-color: $mainColor;
+    }
+  }
+}

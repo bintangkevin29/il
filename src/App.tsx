@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.scss";
+import Button from "./components/button/button.component";
+import Table from "./components/table/table.component";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+const App: React.FC = () => (
+  <div className="app">
+    <div className="app__inner">
+      <h1 className="app__header">User Dashboard</h1>
+      <div className="app__add-button">
+        <Button theme="primary">Add User</Button>
+      </div>
+      <div className="app__table-container">
+        <Table />
+      </div>
     </div>
-  );
-}
+  </div>
+);
 
 export default App;
