@@ -22,3 +22,9 @@ interface UserInterfaceData {
   updateData?: UserData;
   page: number;
 }
+
+interface UserDataDefaultValues {
+  userData: UserData[];
+  sortBy?: keyof UserData;
+  direction?: "asc" | "desc";
+}

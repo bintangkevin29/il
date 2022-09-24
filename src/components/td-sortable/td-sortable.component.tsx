@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { useAppSelector } from "../../redux/hooks";
+import { setSort } from "../../redux/slices/user-data.slice";
 import "./td-sortable.style.scss";
 
 interface TDSortableProps {
@@ -6,12 +9,35 @@ interface TDSortableProps {
   children: React.ReactNode;
 }
 
-const TDSortable: React.FC<TDSortableProps> = ({ sortBy, children }) => {
-  const [ascending, setAscending] = useState<boolean>(true);
+const TDSortable: React.FC<TDSortableProps> = ({
+  sortBy: propsSortBy,
+  children,
+}) => {
+  const { direction, sortBy } = useAppSelector((state) => state.userData.value);
+  const dispatch = useDispatch();
+
   return (
-    <td className="td-sortable" onClick={() => setAscending(!ascending)}>
+    <td
+      className="td-sortable"
+      role="button"
+      onClick={(e) => {
+        e.preventDefault();
+        dispatch(
+          setSort({
+            direction: direction === "asc" ? "desc" : "asc",
+            sortBy: propsSortBy,
+          })
+        );
+      }}
+    >
       {children}
-      <i className={`fa fa-chevron-${ascending ? "down" : "up"}`} />
+      <i
+        className={`fa ${
+          sortBy === propsSortBy
+            ? `fa-chevron-${direction === "asc" ? "down" : "up"}`
+            : ""
+        }`}
+      />
     </td>
   );
 };
