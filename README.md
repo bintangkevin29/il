@@ -19,6 +19,7 @@ yarn start
 ```
 
 #### Recommended System Requirements
+- Internet Connection (For Font Awesome)
 - Node v16.*
 - yarn v1.22.*
 
