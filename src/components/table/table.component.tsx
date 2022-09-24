@@ -48,6 +48,7 @@ const Table: React.FC<TableProps> = ({ tableData = [] }) => {
                 </Button>
                 <Button
                   onClick={() => {
+                    if (!window.confirm("Delete this item")) return;
                     if (currentPageData.length === 1) {
                       dispatch(setPage(page - 1));
                     }

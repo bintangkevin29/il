@@ -15,7 +15,7 @@ export const tableSlice = createSlice({
       state.value = { ...state.value, show: true, updateData: action.payload };
     },
     hide: (state) => {
-      state.value = defaultValue;
+      state.value = { ...defaultValue, page: state.value.page };
     },
     setPage: (state, action: PayloadAction<number>) => {
       state.value = { ...state.value, page: action.payload };
