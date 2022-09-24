@@ -28,8 +28,9 @@ const Input: React.FC<InputProps> = ({
       className="input__control"
       defaultValue={(formEngine && formEngine.formData[name]) || ""}
       onChange={(e) => {
-        const tempFormData = (formEngine && formEngine.formData) || {};
-        Object.assign(tempFormData, { [name]: e.target.value });
+        let tempFormData = (formEngine && formEngine.formData) || {};
+        tempFormData = { ...tempFormData, [name]: e.target.value };
+
         formEngine.setFormData(tempFormData);
       }}
     />

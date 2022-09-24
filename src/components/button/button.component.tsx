@@ -3,7 +3,7 @@ import React from "react";
 import "./button.style.scss";
 
 interface ButtonProps {
-  theme?: "danger" | "default" | "primary";
+  theme?: "danger" | "default" | "primary" | "success";
   children?: React.ReactNode;
   className?: string;
   size?: "md" | "sm" | "lg";

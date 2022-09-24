@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useUserData } from "../../lib/custom-hook";
+import { useAppDispatch } from "../../redux/hooks";
+import { showUpdate } from "../../redux/slices/table.slice";
 import Button from "../button/button.component";
 import TablePagination from "../table-pagination/table-pagination.component";
 import "./table.scss";
@@ -15,6 +17,7 @@ const Table: React.FC<TableProps> = ({ tableData = [] }) => {
     page,
     length: 5,
   });
+  const dispatch = useAppDispatch();
   return (
     <div className="table">
       <table className="table__table">
@@ -36,7 +39,13 @@ const Table: React.FC<TableProps> = ({ tableData = [] }) => {
               <td>{dt.pekerjaan}</td>
               <td>{dt.alamat}</td>
               <td>{dt.tanggalLahir}</td>
-              <td>
+              <td className="table__button-group">
+                <Button
+                  onClick={() => dispatch(showUpdate(dt))}
+                  theme="primary"
+                >
+                  Update
+                </Button>
                 <Button onClick={() => deleteUser(dt.id)} theme="danger">
                   Delete
                 </Button>

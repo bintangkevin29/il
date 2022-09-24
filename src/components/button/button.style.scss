@@ -7,9 +7,16 @@
   border: 0;
   &--default {
     background-color: $default;
-    color: $textColor;
+    color: $mainColor;
     &:active {
       background-color: $defaultClicked;
+    }
+  }
+  &--success {
+    background-color: $success;
+    color: $mainColor;
+    &:active {
+      background-color: $dangerClicked;
     }
   }
   &--danger {
@@ -21,7 +28,7 @@
   }
   &--primary {
     background-color: $thirdColor;
-    color: $textColor;
+    color: $mainColor;
     &:active {
       background-color: rgba($color: $thirdColor, $alpha: 0.7);
     }

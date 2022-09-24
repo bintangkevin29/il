@@ -11,6 +11,15 @@ export const userDataSlice = createSlice({
       tempState.push(action.payload);
       state.value = [...tempState];
     },
+    updateUser: (
+      state,
+      action: PayloadAction<{ id: string; userData: UserData }>
+    ) => {
+      const newState = state.value.map((dt) =>
+        dt.id === action.payload.id ? action.payload.userData : dt
+      );
+      state.value = newState;
+    },
     setAllUser: (state, action: PayloadAction<UserData[]>) => {
       state.value = action.payload;
     },
@@ -21,6 +30,7 @@ export const userDataSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { addUser, deleteUser, setAllUser } = userDataSlice.actions;
+export const { addUser, deleteUser, setAllUser, updateUser } =
+  userDataSlice.actions;
 
 export default userDataSlice.reducer;

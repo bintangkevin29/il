@@ -16,3 +16,8 @@ interface GetPaginatedUserDataProps {
   length: number;
   page: number;
 }
+
+interface TableData {
+  show: boolean;
+  updateData?: UserData;
+}

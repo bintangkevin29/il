@@ -5,7 +5,8 @@ import {
   addUser as addUserAction,
   deleteUser as deleteUserAction,
   setAllUser as setAllUserAction,
-} from "../redux/user-data/user-data.slice";
+  updateUser as updateUserAction,
+} from "../redux/slices/user-data.slice";
 
 export const useUserData = () => {
   const userData = useAppSelector((state) => state.userData.value);
@@ -14,6 +15,9 @@ export const useUserData = () => {
 
   const addUserData = (argUserData: UserData) => {
     dispatch(addUserAction({ ...argUserData, id: v4() }));
+  };
+  const updateUserData = (argUserData: UserData) => {
+    dispatch(updateUserAction({ id: argUserData.id, userData: argUserData }));
   };
   const deleteUser = (userId: UserData["id"]) => {
     dispatch(deleteUserAction(userId));
@@ -47,7 +51,13 @@ export const useUserData = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userData]);
 
-  return { userData, addUserData, deleteUser, getPaginatedUserData };
+  return {
+    userData,
+    addUserData,
+    deleteUser,
+    getPaginatedUserData,
+    updateUserData,
+  };
 };
 
 export const useForm = <T>(defaultValues: T): UseFormReturn<T> => {

@@ -4,23 +4,29 @@ import {
   randFullName,
   randJobTitle,
 } from "@ngneat/falso";
-import React from "react";
+import React, { useEffect } from "react";
 import { v4 } from "uuid";
 import { useForm, useUserData } from "../../lib/custom-hook";
 import { formatDate } from "../../lib/helper";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { hide as hideModal } from "../../redux/slices/table.slice";
 import Button from "../button/button.component";
 import Heading from "../heading/heading.component";
 import Input from "../input/input.component";
 import "./add-modal.style.scss";
 
-interface AddModalProps {
-  show: boolean;
-  setShow: React.Dispatch<React.SetStateAction<boolean>>;
-  isUpdate?: boolean;
-}
+const userDataDefaultValues: UserData = {
+  nama: "",
+  alamat: "",
+  id: "",
+  pekerjaan: "",
+  tanggalLahir: "",
+};
 
-const AddModal: React.FC<AddModalProps> = ({ show, setShow, isUpdate }) => {
-  const { addUserData } = useUserData();
+const AddModal: React.FC = () => {
+  const { addUserData, updateUserData } = useUserData();
+  const { show, updateData } = useAppSelector((state) => state.table.value);
+  const dispatch = useAppDispatch();
   const formEngine = useForm<UserData>({
     nama: "",
     alamat: "",
@@ -34,9 +40,14 @@ const AddModal: React.FC<AddModalProps> = ({ show, setShow, isUpdate }) => {
     argFormData?: UserData
   ) => {
     if (e) e.preventDefault();
-    addUserData(argFormData || formEngine.formData);
-    setShow(false);
+    const finalFormData = argFormData || formEngine.formData;
+    if (!updateData) {
+      addUserData(finalFormData);
+    } else {
+      updateUserData(finalFormData);
+    }
     formEngine.resetForm();
+    dispatch(hideModal());
   };
 
   const handleRandomise = () => {
@@ -55,31 +66,36 @@ const AddModal: React.FC<AddModalProps> = ({ show, setShow, isUpdate }) => {
     handleSubmit(undefined, tempFormData);
   };
 
+  useEffect(() => {
+    formEngine.setFormData(updateData || userDataDefaultValues);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [updateData]);
+
   return show ? (
     <div className={`add-modal`}>
       <div className="add-modal__modal">
         <Heading>Add User</Heading>
         <form onSubmit={handleSubmit}>
           <Input
-            required={!isUpdate}
+            required={!updateData}
             name="nama"
             formEngine={formEngine}
             label="Nama"
           />
           <Input
-            required={!isUpdate}
+            required={!updateData}
             name="alamat"
             label="Alamat"
             formEngine={formEngine}
           />
           <Input
-            required={!isUpdate}
+            required={!updateData}
             name="pekerjaan"
             label="Pekerjaan"
             formEngine={formEngine}
           />
           <Input
-            required={!isUpdate}
+            required={!updateData}
             name="tanggalLahir"
             type="date"
             label="Tanggal Lahir"
@@ -89,7 +105,7 @@ const AddModal: React.FC<AddModalProps> = ({ show, setShow, isUpdate }) => {
             <Button
               type="submit"
               size="lg"
-              theme="primary"
+              theme="success"
               className="add-modal__button"
             >
               Simpan
@@ -97,13 +113,13 @@ const AddModal: React.FC<AddModalProps> = ({ show, setShow, isUpdate }) => {
             <Button
               onClick={handleRandomise}
               size="lg"
-              theme="default"
+              theme="primary"
               className="add-modal__button"
             >
               Randomise
             </Button>
             <Button
-              onClick={() => setShow(false)}
+              onClick={() => dispatch(hideModal())}
               size="lg"
               theme="danger"
               className="add-modal__button"

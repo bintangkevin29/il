@@ -6,7 +6,7 @@
   border-radius: 10px;
   border: 1px solid $thirdColor;
 
-  &__add-button{
+  &__add-button {
     margin-bottom: 1em;
   }
 
@@ -28,7 +28,13 @@
     }
   }
 
-  &__pagination{
+  &__button-group {
+    button {
+      margin: 0 .2em;
+    }
+  }
+
+  &__pagination {
     display: flex;
     justify-content: center;
   }

@@ -1,14 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState } from "react";
+import React from "react";
 import "./App.scss";
 import AddModal from "./components/add-modal/add-modal.component";
 import Button from "./components/button/button.component";
 import Heading from "./components/heading/heading.component";
 import Table from "./components/table/table.component";
 import { useUserData } from "./lib/custom-hook";
+import { useAppDispatch } from "./redux/hooks";
+import { showAdd } from "./redux/slices/table.slice";
 
 const App: React.FC = () => {
-  const [showModal, setShowModal] = useState(false);
+  const dispatch = useAppDispatch();
   const { userData } = useUserData();
 
   return (
@@ -17,7 +19,7 @@ const App: React.FC = () => {
         <div className="app__inner">
           <Heading align="center">User Dashboard</Heading>
           <div className="app__add-button">
-            <Button theme="primary" onClick={() => setShowModal(true)}>
+            <Button theme="primary" onClick={() => dispatch(showAdd())}>
               Add User
             </Button>
           </div>
@@ -26,7 +28,7 @@ const App: React.FC = () => {
           </div>
         </div>
       </div>
-      <AddModal show={showModal} setShow={setShowModal} />
+      <AddModal />
     </>
   );
 };
