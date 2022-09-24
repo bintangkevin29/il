@@ -20,6 +20,9 @@ export const useUserData = () => {
     dispatch(updateUserAction({ id: argUserData.id, userData: argUserData }));
   };
   const deleteUser = (userId: UserData["id"]) => {
+    if (!userData.length) {
+      localStorage.setItem(lsKeyName, "[]");
+    }
     dispatch(deleteUserAction(userId));
   };
   const setAllUser = (argUserData: UserData[]) => {
