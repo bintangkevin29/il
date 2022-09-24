@@ -32,9 +32,13 @@ export const useUserData = () => {
     const currentPageData = userData.filter(
       (dt, i) => i >= firstIndex && i <= lastIndex
     );
+
+    const pageDivided = userData.length / arg.length;
     return {
       currentPageData,
-      maxPage: Math.floor(userData.length / arg.length) + 1,
+      maxPage: Number.isInteger(pageDivided)
+        ? pageDivided
+        : Math.floor(userData.length / arg.length) + 1,
       startIndex: firstIndex + 1,
     };
   };
