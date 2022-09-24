@@ -1,0 +1,17 @@
+@import "../../vars.scss";
+
+.heading {
+  margin-top: 0;
+  color: $headingColor;
+  padding: 1em 0;
+
+  &--left {
+    text-align: left;
+  }
+  &--right {
+    text-align: right;
+  }
+  &--center {
+    text-align: center;
+  }
+}

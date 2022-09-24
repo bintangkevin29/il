@@ -3,7 +3,11 @@ import Button from "../button/button.component";
 import TablePagination from "../table-pagination/table-pagination.component";
 import "./table.scss";
 
-const Table: React.FC = () => (
+interface TableProps {
+  tableData: UserData[];
+}
+
+const Table: React.FC<TableProps> = ({ tableData = [] }) => (
   <div className="table">
     <table className="table__table">
       <thead>
@@ -17,16 +21,18 @@ const Table: React.FC = () => (
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Test</td>
-          <td>Test</td>
-          <td>Test</td>
-          <td>Test</td>
-          <td>Test</td>
-          <td>
-            <Button theme="danger">TEST</Button>
-          </td>
-        </tr>
+        {tableData.map((dt, i) => (
+          <tr>
+            <td>{i}</td>
+            <td>{dt.nama}</td>
+            <td>{dt.pekerjaan}</td>
+            <td>{dt.alamat}</td>
+            <td>{dt.tanggalLahir}</td>
+            <td>
+              <Button theme="danger">TEST</Button>
+            </td>
+          </tr>
+        ))}
       </tbody>
     </table>
     <div className="table__pagination">

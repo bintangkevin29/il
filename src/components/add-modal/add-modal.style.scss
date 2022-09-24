@@ -1,0 +1,30 @@
+@import "../../vars.scss";
+
+.add-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba($color: #000000, $alpha: 0.7);
+
+  &__modal {
+    width: 700px;
+    height: auto;
+    background-color: $secondaryColor;
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 50px;
+    padding: 1em 2em;
+  }
+
+  &__button-group {
+    padding: 0.7em 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__button {
+    margin: 0 0.4em;
+  }
+}

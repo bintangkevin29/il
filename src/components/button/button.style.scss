@@ -23,7 +23,13 @@
     background-color: $thirdColor;
     color: $textColor;
     &:active {
-      background-color:  rgba($color: $thirdColor, $alpha: 0.7);
+      background-color: rgba($color: $thirdColor, $alpha: 0.7);
     }
+  }
+  &--lg {
+    font-size: larger;
+  }
+  &--sm {
+    font-size: smaller;
   }
 }
