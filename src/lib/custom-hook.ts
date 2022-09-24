@@ -30,7 +30,7 @@ export const useUserData = () => {
     );
     return {
       currentPageData,
-      maxPage: Math.floor(userData.length / arg.length),
+      maxPage: Math.floor(userData.length / arg.length) + 1,
       startIndex: firstIndex + 1,
     };
   };
