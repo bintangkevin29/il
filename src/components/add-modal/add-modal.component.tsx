@@ -108,16 +108,18 @@ const AddModal: React.FC = () => {
               theme="success"
               className="add-modal__button"
             >
-              Simpan
+              Save
             </Button>
-            <Button
-              onClick={handleRandomise}
-              size="lg"
-              theme="primary"
-              className="add-modal__button"
-            >
-              Randomise
-            </Button>
+            {!updateData && (
+              <Button
+                onClick={handleRandomise}
+                size="lg"
+                theme="success"
+                className="add-modal__button"
+              >
+                Add Random
+              </Button>
+            )}
             <Button
               onClick={() => dispatch(hideModal())}
               size="lg"
