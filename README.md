@@ -2,18 +2,26 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Quick Run
+
+[https://bintangkevin29.github.io/user-dashboard](https://bintangkevin29.github.io/user-dashboard)
+
 ## Installation
 
-In the project directory, you can run:
+Or if you want to run this project locally, in the project directory, you can run:
 
 ```
 yarn install
 ```
+
 ```
 yarn start
 ```
 
+## Run
+
 And then in your browser, visit
+
 ```
 http://localhost:3000/
 ```
