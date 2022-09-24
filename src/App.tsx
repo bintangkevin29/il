@@ -19,7 +19,11 @@ const App: React.FC = () => {
         <div className="app__inner">
           <Heading align="center">User Dashboard</Heading>
           <div className="app__add-button">
-            <Button theme="primary" onClick={() => dispatch(showAdd())}>
+            <Button
+              theme="success"
+              onClick={() => dispatch(showAdd())}
+              size="lg"
+            >
               Add User
             </Button>
           </div>
