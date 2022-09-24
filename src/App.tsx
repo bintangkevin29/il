@@ -7,7 +7,7 @@ import Heading from "./components/heading/heading.component";
 import Table from "./components/table/table.component";
 import { useUserData } from "./lib/custom-hook";
 import { useAppDispatch } from "./redux/hooks";
-import { showAdd } from "./redux/slices/table.slice";
+import { showAdd } from "./redux/slices/user-interface.slice";
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch();

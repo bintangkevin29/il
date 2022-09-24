@@ -1,9 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const defaultValue: TableData = { show: false, updateData: undefined, page: 1 };
+const defaultValue: UserInterfaceData = {
+  show: false,
+  updateData: undefined,
+  page: 1,
+};
 
-export const tableSlice = createSlice({
-  name: "table",
+export const userInterfaceSlice = createSlice({
+  name: "userInterface",
   initialState: {
     value: defaultValue,
   },
@@ -24,6 +28,7 @@ export const tableSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { showAdd, showUpdate, hide, setPage } = tableSlice.actions;
+export const { showAdd, showUpdate, hide, setPage } =
+  userInterfaceSlice.actions;
 
-export default tableSlice.reducer;
+export default userInterfaceSlice.reducer;

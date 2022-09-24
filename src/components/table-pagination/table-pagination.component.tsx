@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "../../redux/hooks";
-import { setPage } from "../../redux/slices/table.slice";
+import { setPage } from "../../redux/slices/user-interface.slice";
 import "./table-pagination.style.scss";
 
 interface TablePaginationProps {

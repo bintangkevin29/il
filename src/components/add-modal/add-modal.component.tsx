@@ -9,7 +9,7 @@ import { v4 } from "uuid";
 import { useForm, useUserData } from "../../lib/custom-hook";
 import { formatDate } from "../../lib/helper";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { hide as hideModal } from "../../redux/slices/table.slice";
+import { hide as hideModal } from "../../redux/slices/user-interface.slice";
 import Button from "../button/button.component";
 import Heading from "../heading/heading.component";
 import Input from "../input/input.component";

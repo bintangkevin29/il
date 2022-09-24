@@ -1,7 +1,7 @@
 import React from "react";
 import { useUserData } from "../../lib/custom-hook";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { setPage, showUpdate } from "../../redux/slices/table.slice";
+import { setPage, showUpdate } from "../../redux/slices/user-interface.slice";
 import Button from "../button/button.component";
 import TablePagination from "../table-pagination/table-pagination.component";
 import TDSortable from "../td-sortable/td-sortable.component";
