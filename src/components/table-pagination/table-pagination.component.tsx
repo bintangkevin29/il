@@ -13,12 +13,13 @@ const TablePagination: React.FC<TablePaginationProps> = ({
   setPage,
 }) => {
   return (
-    <div className="pagination"> 
+    <div className="pagination">
       {Array(length)
         .fill(length)
         .map((dt, i) => {
           return (
             <div
+              key={`${dt}-${i}`}
               onClick={() => setPage(i + 1)}
               className={`pagination__item ${
                 page === i + 1 ? "pagination__item--active" : ""

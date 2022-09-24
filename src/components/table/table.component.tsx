@@ -10,10 +10,10 @@ interface TableProps {
 
 const Table: React.FC<TableProps> = ({ tableData = [] }) => {
   const [page, setPage] = useState(1);
-  const { getPaginatedUserData } = useUserData();
+  const { getPaginatedUserData, deleteUser } = useUserData();
   const { currentPageData, maxPage, startIndex } = getPaginatedUserData({
     page,
-    length: 2,
+    length: 5,
   });
   return (
     <div className="table">
@@ -30,14 +30,16 @@ const Table: React.FC<TableProps> = ({ tableData = [] }) => {
         </thead>
         <tbody>
           {currentPageData.map((dt, i) => (
-            <tr>
+            <tr key={i}>
               <td>{i + startIndex}</td>
               <td>{dt.nama}</td>
               <td>{dt.pekerjaan}</td>
               <td>{dt.alamat}</td>
               <td>{dt.tanggalLahir}</td>
               <td>
-                <Button theme="danger">TEST</Button>
+                <Button onClick={() => deleteUser(dt.id)} theme="danger">
+                  Delete
+                </Button>
               </td>
             </tr>
           ))}

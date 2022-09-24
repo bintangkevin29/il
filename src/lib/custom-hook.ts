@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { v4 } from "uuid";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import {
   addUser as addUserAction,
@@ -12,7 +13,7 @@ export const useUserData = () => {
   const lsKeyName = "userData";
 
   const addUserData = (argUserData: UserData) => {
-    dispatch(addUserAction(argUserData));
+    dispatch(addUserAction({ ...argUserData, id: v4() }));
   };
   const deleteUser = (userId: UserData["id"]) => {
     dispatch(deleteUserAction(userId));
