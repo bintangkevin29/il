@@ -3,28 +3,34 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 export const userDataSlice = createSlice({
   name: "userData",
   initialState: {
-    value: [] as UserData[],
+    value: {
+      userData: [] as UserData[],
+      sortBy: "nama" as keyof UserData,
+      direction: "asc" as "asc" | "desc",
+    },
   },
   reducers: {
     addUser: (state, action: PayloadAction<UserData>) => {
-      const tempState = state.value;
+      const tempState = state.value.userData;
       tempState.push(action.payload);
-      state.value = [...tempState];
+      state.value.userData = [...tempState];
     },
     updateUser: (
       state,
       action: PayloadAction<{ id: string; userData: UserData }>
     ) => {
-      const newState = state.value.map((dt) =>
+      const newState = state.value.userData.map((dt) =>
         dt.id === action.payload.id ? action.payload.userData : dt
       );
-      state.value = newState;
+      state.value.userData = newState;
     },
     setAllUser: (state, action: PayloadAction<UserData[]>) => {
-      state.value = action.payload;
+      state.value.userData = action.payload;
     },
     deleteUser: (state, action: PayloadAction<UserData["id"]>) => {
-      state.value = state.value.filter((dt) => dt.id !== action.payload);
+      state.value.userData = state.value.userData.filter(
+        (dt) => dt.id !== action.payload
+      );
     },
   },
 });

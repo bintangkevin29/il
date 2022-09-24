@@ -9,7 +9,7 @@ import {
 } from "../redux/slices/user-data.slice";
 
 export const useUserData = () => {
-  const userData = useAppSelector((state) => state.userData.value);
+  const { userData } = useAppSelector((state) => state.userData.value);
   const dispatch = useAppDispatch();
   const lsKeyName = "userData";
 
