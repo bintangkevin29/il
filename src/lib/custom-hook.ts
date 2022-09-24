@@ -20,7 +20,7 @@ export const useUserData = () => {
     dispatch(updateUserAction({ id: argUserData.id, userData: argUserData }));
   };
   const deleteUser = (userId: UserData["id"]) => {
-    if (!userData.length) {
+    if (userData.length === 1 && userData.find((dt) => dt.id === userId)) {
       localStorage.setItem(lsKeyName, "[]");
     }
     dispatch(deleteUserAction(userId));
