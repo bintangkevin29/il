@@ -1,5 +1,13 @@
+import {
+  randAddress,
+  randBetweenDate,
+  randFullName,
+  randJobTitle,
+} from "@ngneat/falso";
 import React from "react";
+import { v4 } from "uuid";
 import { useForm, useUserData } from "../../lib/custom-hook";
+import { formatDate } from "../../lib/helper";
 import Button from "../button/button.component";
 import Heading from "../heading/heading.component";
 import Input from "../input/input.component";
@@ -21,12 +29,32 @@ const AddModal: React.FC<AddModalProps> = ({ show, setShow, isUpdate }) => {
     tanggalLahir: "",
   });
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    addUserData(formEngine.formData);
+  const handleSubmit = (
+    e?: React.FormEvent<HTMLFormElement>,
+    argFormData?: UserData
+  ) => {
+    if (e) e.preventDefault();
+    addUserData(argFormData || formEngine.formData);
     setShow(false);
     formEngine.resetForm();
   };
+
+  const handleRandomise = () => {
+    const tempFormData = {
+      alamat: randAddress().street,
+      nama: randFullName(),
+      id: v4(),
+      pekerjaan: randJobTitle(),
+      tanggalLahir: formatDate(
+        randBetweenDate({
+          from: new Date("10/07/1900"),
+          to: new Date(),
+        })
+      ),
+    };
+    handleSubmit(undefined, tempFormData);
+  };
+
   return show ? (
     <div className={`add-modal`}>
       <div className="add-modal__modal">
@@ -65,6 +93,14 @@ const AddModal: React.FC<AddModalProps> = ({ show, setShow, isUpdate }) => {
               className="add-modal__button"
             >
               Simpan
+            </Button>
+            <Button
+              onClick={handleRandomise}
+              size="lg"
+              theme="default"
+              className="add-modal__button"
+            >
+              Randomise
             </Button>
             <Button
               onClick={() => setShow(false)}

@@ -6,9 +6,9 @@ interface UserData {
   tanggalLahir: string;
 }
 
-interface UseFormReturn {
-  formData: any;
-  setFormData: React.Dispatch<React.SetStateAction<any>>;
+interface UseFormReturn<T = any> {
+  formData: T;
+  setFormData: React.Dispatch<React.SetStateAction<T>>;
   resetForm: () => void;
 }
 

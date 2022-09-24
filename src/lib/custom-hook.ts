@@ -50,8 +50,8 @@ export const useUserData = () => {
   return { userData, addUserData, deleteUser, getPaginatedUserData };
 };
 
-export const useForm = <T>(defaultValues: T): UseFormReturn => {
-  const [formData, setFormData] = useState(defaultValues);
+export const useForm = <T>(defaultValues: T): UseFormReturn<T> => {
+  const [formData, setFormData] = useState<T>(defaultValues);
   const resetForm = () => {
     setFormData(defaultValues);
   };
