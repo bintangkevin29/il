@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { setPage, showUpdate } from "../../redux/slices/table.slice";
 import Button from "../button/button.component";
 import TablePagination from "../table-pagination/table-pagination.component";
+import TDSortable from "../td-sortable/td-sortable.component";
 import "./table.scss";
 
 interface TableProps {
@@ -24,10 +25,10 @@ const Table: React.FC<TableProps> = ({ tableData = [] }) => {
         <thead>
           <tr>
             <td>No</td>
-            <td>Nama</td>
-            <td>Pekerjaan</td>
-            <td>Alamat</td>
-            <td>Tanggal Lahir</td>
+            <TDSortable sortBy="nama">Nama</TDSortable>
+            <TDSortable sortBy="pekerjaan">Pekerjaan</TDSortable>
+            <TDSortable sortBy="alamat">Alamat</TDSortable>
+            <TDSortable sortBy="tanggalLahir">Tanggal Lahir</TDSortable>
             <td></td>
           </tr>
         </thead>
