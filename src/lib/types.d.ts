@@ -20,4 +20,5 @@ interface GetPaginatedUserDataProps {
 interface TableData {
   show: boolean;
   updateData?: UserData;
+  page: number;
 }

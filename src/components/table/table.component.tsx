@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useUserData } from "../../lib/custom-hook";
-import { useAppDispatch } from "../../redux/hooks";
-import { showUpdate } from "../../redux/slices/table.slice";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { setPage, showUpdate } from "../../redux/slices/table.slice";
 import Button from "../button/button.component";
 import TablePagination from "../table-pagination/table-pagination.component";
 import "./table.scss";
@@ -11,7 +11,7 @@ interface TableProps {
 }
 
 const Table: React.FC<TableProps> = ({ tableData = [] }) => {
-  const [page, setPage] = useState(1);
+  const { page } = useAppSelector((state) => state.table.value);
   const { getPaginatedUserData, deleteUser } = useUserData();
   const { currentPageData, maxPage, startIndex } = getPaginatedUserData({
     page,
@@ -46,7 +46,15 @@ const Table: React.FC<TableProps> = ({ tableData = [] }) => {
                 >
                   Update
                 </Button>
-                <Button onClick={() => deleteUser(dt.id)} theme="danger">
+                <Button
+                  onClick={() => {
+                    if (currentPageData.length === 1) {
+                      dispatch(setPage(page - 1));
+                    }
+                    deleteUser(dt.id);
+                  }}
+                  theme="danger"
+                >
                   Delete
                 </Button>
               </td>
@@ -55,7 +63,7 @@ const Table: React.FC<TableProps> = ({ tableData = [] }) => {
         </tbody>
       </table>
       <div className="table__pagination">
-        <TablePagination page={page} setPage={setPage} length={maxPage} />
+        <TablePagination length={maxPage} />
       </div>
     </div>
   );

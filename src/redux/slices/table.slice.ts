@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const defaultValue: TableData = { show: false, updateData: undefined };
+const defaultValue: TableData = { show: false, updateData: undefined, page: 1 };
 
 export const tableSlice = createSlice({
   name: "table",
@@ -9,18 +9,21 @@ export const tableSlice = createSlice({
   },
   reducers: {
     showAdd: (state) => {
-      state.value = { show: true, updateData: undefined };
+      state.value = { ...state.value, show: true, updateData: undefined };
     },
     showUpdate: (state, action: PayloadAction<UserData>) => {
-      state.value = { show: true, updateData: action.payload };
+      state.value = { ...state.value, show: true, updateData: action.payload };
     },
     hide: (state) => {
       state.value = defaultValue;
+    },
+    setPage: (state, action: PayloadAction<number>) => {
+      state.value = { ...state.value, page: action.payload };
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { showAdd, showUpdate, hide } = tableSlice.actions;
+export const { showAdd, showUpdate, hide, setPage } = tableSlice.actions;
 
 export default tableSlice.reducer;

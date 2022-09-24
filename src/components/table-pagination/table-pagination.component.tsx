@@ -1,18 +1,17 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { useAppSelector } from "../../redux/hooks";
+import { setPage } from "../../redux/slices/table.slice";
 import "./table-pagination.style.scss";
 
 interface TablePaginationProps {
   length: number;
-  page: number;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const TablePagination: React.FC<TablePaginationProps> = ({
-  length,
-  page,
-  setPage,
-}) => {
-  return (
+const TablePagination: React.FC<TablePaginationProps> = ({ length }) => {
+  const { page } = useAppSelector((state) => state.table.value);
+  const dispatch = useDispatch();
+  return length > 1 ? (
     <div className="pagination">
       {Array(length)
         .fill(length)
@@ -20,7 +19,7 @@ const TablePagination: React.FC<TablePaginationProps> = ({
           return (
             <div
               key={`${dt}-${i}`}
-              onClick={() => setPage(i + 1)}
+              onClick={() => dispatch(setPage(i + 1))}
               className={`pagination__item ${
                 page === i + 1 ? "pagination__item--active" : ""
               }`}
@@ -30,6 +29,8 @@ const TablePagination: React.FC<TablePaginationProps> = ({
           );
         })}
     </div>
+  ) : (
+    <></>
   );
 };
 
