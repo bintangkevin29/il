@@ -18,7 +18,7 @@ yarn install
 yarn start
 ```
 
-### Recommended System Requirements
+#### Recommended System Requirements
 - Node v16.*
 - yarn v1.22.*
 
