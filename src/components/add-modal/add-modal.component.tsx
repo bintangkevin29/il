@@ -24,6 +24,8 @@ const AddModal: React.FC<AddModalProps> = ({ show, setShow, isUpdate }) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     addUserData(formEngine.formData);
+    setShow(false);
+    formEngine.resetForm();
   };
   return show ? (
     <div className={`add-modal`}>
