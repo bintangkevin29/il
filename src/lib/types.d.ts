@@ -11,3 +11,8 @@ interface UseFormReturn {
   setFormData: React.Dispatch<React.SetStateAction<any>>;
   resetForm: () => void;
 }
+
+interface GetPaginatedUserDataProps {
+  length: number;
+  page: number;
+}

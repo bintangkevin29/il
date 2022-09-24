@@ -20,6 +20,19 @@ export const useUserData = () => {
   const setAllUser = (argUserData: UserData[]) => {
     dispatch(setAllUserAction(argUserData));
   };
+  const getPaginatedUserData = (arg: GetPaginatedUserDataProps) => {
+    const firstIndex = (arg.page - 1) * arg.length;
+    const lastIndex = arg.page * arg.length - 1;
+
+    const currentPageData = userData.filter(
+      (dt, i) => i >= firstIndex && i <= lastIndex
+    );
+    return {
+      currentPageData,
+      maxPage: Math.floor(userData.length / arg.length),
+      startIndex: firstIndex + 1,
+    };
+  };
 
   useEffect(() => {
     const lsUserData: UserData[] = JSON.parse(
@@ -33,7 +46,7 @@ export const useUserData = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userData]);
 
-  return { userData, addUserData, deleteUser };
+  return { userData, addUserData, deleteUser, getPaginatedUserData };
 };
 
 export const useForm = <T>(defaultValues: T): UseFormReturn => {
